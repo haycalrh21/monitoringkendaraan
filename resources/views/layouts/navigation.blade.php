@@ -21,9 +21,9 @@
                         <x-nav-link :href="route('pemesanan')" :active="request()->routeIs('pemesanan')">
                             {{ __('Pemesanan') }}
                         </x-nav-link>
-                        {{-- <x-nav-link :href="route('kendaraan')" :active="request()->routeIs('kendaraan')">
-                            {{ __('Kendaraan') }}
-                        </x-nav-link> --}}
+                        <x-nav-link :href="route('pemakaian')" :active="request()->routeIs('pemakaian')">
+                            {{ __('Pemakaian') }}
+                        </x-nav-link>
                     @else
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
@@ -60,9 +60,9 @@
 
                     <x-slot name="content">
 
-                        <x-dropdown-link :href="route('profile.edit')">
+                        {{-- <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
-                        </x-dropdown-link>
+                        </x-dropdown-link> --}}
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
@@ -100,16 +100,26 @@
 
             @if (Auth::user()->role === 'admin')
                 <x-responsive-nav-link :href="route('admin')" :active="request()->routeIs('admin')">
-                    {{ __('admin') }}
+                    {{ __('Admin') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('pegawai')" :active="request()->routeIs('pegawai')">
-                    {{ __('pegawai') }}
-                </x-responsive-nav-link><x-responsive-nav-link :href="route('kendaraan')" :active="request()->routeIs('kendaraan')">
+                    {{ __('Pegawai') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('kendaraan')" :active="request()->routeIs('kendaraan')">
                     {{ __('kendaraan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemesanan')" :active="request()->routeIs('pemesanan')">
+                    {{ __('Pemesanan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('pemakaian')" :active="request()->routeIs('pemakaian')">
+                    {{ __('Pemakaian') }}
                 </x-responsive-nav-link>
             @else
                 <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('persetejuan')" :active="request()->routeIs('persetejuan')">
+                    {{ __('Persetejuan') }}
                 </x-responsive-nav-link>
             @endif
 
@@ -123,9 +133,9 @@
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                {{-- <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
-                </x-responsive-nav-link>
+                </x-responsive-nav-link> --}}
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">

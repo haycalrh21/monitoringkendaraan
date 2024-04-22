@@ -22,4 +22,14 @@ class Pemesanan extends Model
     {
         return $this->belongsTo(Kendaraan::class, 'id_kendaraan');
     }
+
+    public function atasan1()
+    {
+        return $this->belongsTo(User::class, 'id_atasan1');
+    }
+
+    public function atasan2()
+    {
+        return $this->belongsTo(User::class, 'id_atasan2');
+    }
 }

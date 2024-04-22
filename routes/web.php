@@ -12,12 +12,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/pegawai', [Admincontroller::class, 'pegawai'])->name('pegawai');
     Route::get('/admin/kendaraan', [Admincontroller::class, 'kendaraan'])->name('kendaraan');
     Route::get('/admin/pemesanan', [Admincontroller::class, 'pemesanan'])->name('pemesanan');
+    Route::get('/admin/pemakaian', [Admincontroller::class, 'pemakaian'])->name('pemakaian');
     Route::post('/kirimpegawai', [Admincontroller::class, 'kirimpegawai'])->name('kirimpegawai');
     Route::post('/kirimkendaraan', [Admincontroller::class, 'kirimkendaraan'])->name('kirimkendaraan');
-    Route::get('/pemesanan/export', [Admincontroller::class, 'export'])->name('pemesanan.export');
-
-
     Route::post('/kirimpemesanan', [Admincontroller::class, 'kirimpemesanan'])->name('kirimpemesanan');
+    Route::post('/kirimpemakaian', [Admincontroller::class, 'kirimpemakaian'])->name('kirimpemakaian');
+    Route::get('/pemesanan/export', [Admincontroller::class, 'export'])->name('pemesanan.export');
+    Route::get('/get-data/{id}', [Admincontroller::class, 'getData']);
 });
 
 Route::middleware(['auth', 'role:atasan'])->group(function () {

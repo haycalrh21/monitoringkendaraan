@@ -16,8 +16,8 @@
 
                         <!-- Button to Open Modal -->
                         <button @click="openModal = true"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buka
-                            Modal</button>
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Tambah
+                            Data</button>
 
                         <!-- Modal -->
                         <div x-show="openModal" x-cloak
@@ -34,19 +34,14 @@
                                     <label for="plat_nomor" class="block mb-2">Plat Nomor:</label>
                                     <input type="text" x-model="name" id="plat_nomor" name="plat_nomor">
 
+                                    <label for="jumlah_km" class="block mb-2">Jumlah KM:</label>
+                                    <input type="number" x-model="name" id="jumlah_km" name="jumlah_km" value="0">
+
                                     <label for="jenis" class="block mb-2">Jenis:</label>
                                     <select x-model="Jenis" name="jenis" class="w-full">
                                         <option value="">pilih</option>
                                         <option value="Angkutan Barang">Angkutan Barang</option>
                                         <option value="Angkutan Orang">Angkutan Orang</option>
-
-                                    </select>
-
-                                    <label for="service" class="block mb-2">Service:</label>
-                                    <select x-model="Jenis" name="service" class="w-full">
-                                        <option value="">pilih</option>
-                                        <option value="Harus Service">Harus Service</option>
-                                        <option value="Belum Service">Belum Service</option>
                                     </select>
 
                                     <div>
@@ -77,7 +72,9 @@
                                         <th class="border border-black">Nama Kendaraan</th>
                                         <th class="border border-black">Plat Nomor</th>
                                         <th class="border border-black">Jenis</th>
+                                        <th class="border border-black">Status</th>
                                         <th class="border border-black">Service</th>
+                                        <th class="border border-black">Total KM</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,19 +82,32 @@
                                         <tr class="border border-black">
                                             <td class="border border-black">{{ $key + 1 }}</td>
                                             {{-- <td class="border border-black">{{ $kendaraan->id }}</td> --}}
-                                            <td class="border border-black">{{ $kendaraan->nama_kendaraan }}</td>
-                                            <td class="border border-black">{{ $kendaraan->plat_nomor }}</td>
-                                            <td class="border border-black">{{ $kendaraan->jenis }}</td>
-                                            <td class="border border-black">{{ $kendaraan->service }}</td>
+                                            <td class="border border-black text-center">{{ $kendaraan->nama_kendaraan }}
+                                            </td>
+                                            <td class="border border-black text-center">{{ $kendaraan->plat_nomor }}
+                                            </td>
+                                            <td class="border border-black text-center">{{ $kendaraan->jenis }}</td>
+                                            <td class="border border-black text-center">{{ $kendaraan->status }}</td>
+                                            <td class="border border-black text-center">
+                                                @if ($kendaraan->jumlah_km % 20000 === 0)
+                                                    <p>maka harus di service</p>
+                                                @else
+                                                    {{ $kendaraan->service }}
+                                                @endif
+                                            </td>
+
+
+                                            <td class="border border-black text-center">{{ $kendaraan->jumlah_km }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                         </div>
                     @else
-                        <p>Tidak ada data pegawai.</p>
+                        <p>Tidak ada data Kendaraan.</p>
                     @endif
                 </div>
+                <span class="text-red-500">*setiap kelipatan km 20000 maka harus di service</span>
             </div>
         </div>
     </div>

@@ -29,6 +29,7 @@ return new class extends Migration
             $table->string('nama');
             $table->enum('status1', ['Belum Disetujui', 'Disetujui'])->default('Belum Disetujui');
             $table->enum('status2', ['Belum Disetujui', 'Disetujui'])->default('Belum Disetujui');
+            $table->enum('statuspemesanan', ['Selesai', 'Belum Selesai'])->default('Belum Selesai');
 
 
 

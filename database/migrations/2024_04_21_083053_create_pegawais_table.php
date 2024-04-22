@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('pegawais', function (Blueprint $table) {
             $table->id();
             $table->string('nama', 50);
+            $table->enum('status', ['Tersedia', 'Tidak Tersedia'])->default('Tersedia');
             $table->timestamps();
         });
     }

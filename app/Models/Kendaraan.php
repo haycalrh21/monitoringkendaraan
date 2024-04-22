@@ -9,5 +9,10 @@ class Kendaraan extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["nama_kendaraan", "jenis", "sevice", "plat_nomor"];
+    protected $fillable = ["nama_kendaraan", "jenis", "plat_nomor", "jumlah_km"];
+
+    public function pemesanans()
+    {
+        return $this->hasMany(Pemesanan::class, 'id_kendaraan');
+    }
 }

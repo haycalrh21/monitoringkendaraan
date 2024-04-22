@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <p>Halaman pegawai</p>
+            <p>Halaman Pegawai</p>
         </h2>
     </x-slot>
 
@@ -16,8 +16,8 @@
 
 
                         <button @click="openModal = true"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buka
-                            Modal</button>
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Tambah
+                            Data</button>
 
 
                         <div x-show="openModal" x-cloak
@@ -55,16 +55,18 @@
                                 <thead>
                                     <tr class="bg-gray-200">
                                         <th class="border border-black">No</th>
-                                        <th class="border border-black">Id</th>
+
                                         <th class="border border-black">Nama</th>
+                                        <th class="border border-black">Status</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($pegawais as $key => $pegawai)
                                         <tr class="border border-black">
-                                            <td class="border border-black">{{ $key + 1 }}</td>
-                                            <td class="border border-black">{{ $pegawai->id }}</td>
-                                            <td class="border border-black">{{ $pegawai->nama }}</td>
+                                            <td class="border border-black text-center">{{ $key + 1 }}</td>
+
+                                            <td class="border border-black text-center">{{ $pegawai->nama }}</td>
+                                            <td class="border border-black text-center">{{ $pegawai->status }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

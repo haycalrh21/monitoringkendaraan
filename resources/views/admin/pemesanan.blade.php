@@ -16,8 +16,8 @@
 
 
                         <button @click="openModal = true"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Buka
-                            Modal</button>
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Tambah
+                            Data</button>
 
 
                         <div x-show="openModal" x-cloak
@@ -32,11 +32,18 @@
                                     <label for="nama" class="block mb-2">Pilih Pegawai</label>
                                     <select name="nama" required class="w-full">
                                         <option value="">Pilih</option>
+
                                         @foreach ($pegawais as $pegawai)
-                                            <option value="{{ $pegawai->id }}"">
-                                                {{ $pegawai->nama }}
-                                            </option>
+                                            @if ($pegawai->status === 'Tidak Tersedia')
+                                                Tidak ada yang tersedia
+                                            @else
+                                                <option value="{{ $pegawai->id }}"">
+                                                    {{ $pegawai->nama }}
+                                                </option>
+                                            @endif
                                         @endforeach
+
+
                                     </select>
 
 
@@ -44,9 +51,13 @@
                                     <select name="nama_kendaraan" required class="w-full">
                                         <option value="">Pilih</option>
                                         @foreach ($kendaraans as $kendaraan)
-                                            <option value="{{ $kendaraan->id }}">
-                                                {{ $kendaraan->nama_kendaraan }} ({{ $kendaraan->plat_nomor }})
-                                            </option>
+                                            @if ($kendaraan->status === 'Tidak Tersedia')
+                                                <p>Tidak ada yang tersedia</p>
+                                            @else
+                                                <option value="{{ $kendaraan->id }}">
+                                                    {{ $kendaraan->nama_kendaraan }} ({{ $kendaraan->plat_nomor }})
+                                                </option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     <div>
@@ -85,7 +96,11 @@
                                     <th class="border border-black">Nama Pegawai</th>
                                     <th class="border border-black">Nama Kendaraan</th>
                                     <th class="border border-black">Status 1</th>
+                                    <th class="border border-black">Nama Atasan 1</th>
                                     <th class="border border-black">Status 2</th>
+                                    <th class="border border-black">Nama Atasan 2</th>
+                                    <th class="border border-black">Status Pemesanan 2</th>
+
 
                                 </tr>
                             </thead>
@@ -98,7 +113,24 @@
                                         <td class="border border-black text-center">{{ $pemesanan->nama_kendaraan }}
                                         </td>
                                         <td class="border border-black text-center">{{ $pemesanan->status1 }}</td>
+                                        <td class="border border-black text-center">
+                                            @if (optional($pemesanan->atasan1)->name)
+                                                {{ $pemesanan->atasan1->name }}
+                                            @else
+                                                Belum Ada Yang Menyetujui
+                                            @endif
+                                        </td>
                                         <td class="border border-black text-center">{{ $pemesanan->status2 }}</td>
+                                        <td class="border border-black text-center">
+                                            @if (optional($pemesanan->atasan2)->name)
+                                                {{ $pemesanan->atasan2->name }}
+                                            @else
+                                                Belum Ada Yang Menyetujui
+                                            @endif
+                                        </td>
+                                        <td class="border border-black text-center">{{ $pemesanan->statuspemesanan }}
+                                        </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

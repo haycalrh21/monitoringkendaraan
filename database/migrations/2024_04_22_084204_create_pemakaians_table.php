@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kendaraans', function (Blueprint $table) {
+        Schema::create('pemakaians', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_pemesanan');
+            $table->foreign('id_pemesanan')->references('id')->on('pemesanans');
+            $table->string('nama');
             $table->string('nama_kendaraan');
-            $table->string('jenis');
-            $table->string('plat_nomor');
-            $table->string('jumlah_km');
-            $table->enum('service', ["Harus Service", "Belum Service"])->default("Belum Service");
-            $table->enum('status', ["Tersedia", "Tidak Tersedia"])->default("Tersedia");
+            $table->string('bbm');
+            $table->string('hari');
+            $table->string('total_km');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kendaraans');
+        Schema::dropIfExists('pemakaians');
     }
 };
